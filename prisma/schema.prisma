@@ -1,0 +1,87 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model usuario{
+  uid         String  @id @unique @default(cuid())
+  nome        String
+  senha       String
+  cpf         String  @unique
+  email       String  @unique
+  telefone    String
+  responsavel Boolean @default(true)
+  
+  empresa     empresa?
+
+  criado_em     DateTime @default(now())
+  atualizado_em DateTime?
+}
+
+model empresa {
+  uid         String  @id @unique @default(cuid())
+  nome        String
+  cnpj        String  @unique
+  endereco    String
+  telefone    String
+
+  produtos empresa_produto[]
+
+  responsavel     usuario  @relation(fields: [uid_responsavel], references: [uid])
+  uid_responsavel String  @unique
+
+  criado_em     DateTime  @default(now())
+  atualizado_em DateTime?
+
+}
+
+model empresa_produto{
+  produto produto @relation(fields: [uid_produto], references: [uid])
+  uid_produto String
+
+  empresa empresa @relation(fields: [uid_empresa], references: [uid])
+  uid_empresa String
+
+  @@id([uid_empresa, uid_produto])
+}
+
+model produto{
+  uid   String @id @unique @default(cuid())
+  nome  String
+  marca String
+  preco Float
+  descricao String
+  imagem String
+
+  mercado   empresa_produto[]
+  promocao  produto_promocao[]
+
+  criado_em DateTime @default(now())
+  atualizado_em DateTime?
+}
+
+model produto_promocao{
+  produto produto @relation(fields: [uid_produto], references: [uid])
+  uid_produto String
+  promocao promocao @relation(fields: [uid_promocao], references: [uid])
+  uid_promocao String
+
+  @@id([uid_produto, uid_promocao])
+}
+
+model promocao{
+  uid String @id @unique @default(cuid())
+  titulo String
+  descricao String
+  produto produto_promocao[]
+  disponivel Boolean @default(true)
+  criado_em DateTime @default(now())
+  valido_ate DateTime
+}

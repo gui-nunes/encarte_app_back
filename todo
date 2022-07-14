@@ -1,0 +1,44 @@
+	Ideia inicial:
+    -------------
+	
+	Usuarios comuns:
+    -----
+	Apenas poderão visualizar as seguintes informações.
+
+    Promoções disponiveis filtando-as por:
+     Todas as promoçoes,
+     Todas as promoçoes por produto,
+     Todas as promoçoes por mercado,  
+
+ |________________________________________________________________________________________________
+
+	Usuarios responsaveis:
+    -----
+	Poderão criar, alterar, apagar e ver: produtos, mercados e promoções.
+
+ |________________________________________________________________________________________________
+
+	Produtos:
+    -----
+	Os produtos apresentarão apenas informações basicas como: 
+    NOME, MARCA, PREÇO ORIGINAL, CATEGORIA, DETALHES OPCIONAIS;
+    Ainda podendo ser apresentado PROMOÇÕES E MERCADOS relacionados ao produto.
+   
+ |________________________________________________________________________________________________
+
+    Promoções:
+    -----
+    As promoções apresentação apenas informações relacionadas ao produto e mercado e tempo de duração da promoção.
+    Campos: preço promocional, mercado responsavel, detalhes opcionais, tempo de duração.
+
+ |________________________________________________________________________________________________
+
+
+	Mercado:
+    -----
+	O mercado terá informações basicas, como contato, endereço, horario de funcionamento, além dos produtos e promoçoes disponiveis.
+
+ |________________________________________________________________________________________________
+
+	
+	
